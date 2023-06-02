@@ -1,4 +1,4 @@
-package com.riarurainey.socialmedia.api.security.auth.service;
+package com.riarurainey.socialmedia.api.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

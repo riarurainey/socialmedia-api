@@ -1,6 +1,5 @@
-package com.riarurainey.socialmedia.api.security.auth.filter;
+package com.riarurainey.socialmedia.api.security.jwt;
 
-import com.riarurainey.socialmedia.api.security.auth.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

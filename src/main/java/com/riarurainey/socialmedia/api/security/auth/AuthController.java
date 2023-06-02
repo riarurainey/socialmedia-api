@@ -1,9 +1,5 @@
-package com.riarurainey.socialmedia.api.security.auth.controller;
+package com.riarurainey.socialmedia.api.security.auth;
 
-import com.riarurainey.socialmedia.api.security.auth.dto.AuthRequestDto;
-import com.riarurainey.socialmedia.api.security.auth.dto.AuthResponseDto;
-import com.riarurainey.socialmedia.api.security.auth.dto.RegisterRequestDto;
-import com.riarurainey.socialmedia.api.security.auth.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

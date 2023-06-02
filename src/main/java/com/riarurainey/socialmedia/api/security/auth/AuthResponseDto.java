@@ -1,4 +1,4 @@
-package com.riarurainey.socialmedia.api.security.auth.dto;
+package com.riarurainey.socialmedia.api.security.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

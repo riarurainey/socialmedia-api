@@ -1,6 +1,6 @@
 package com.riarurainey.socialmedia.api.security.config;
 
-import com.riarurainey.socialmedia.api.security.auth.filter.JwtAuthFilter;
+import com.riarurainey.socialmedia.api.security.jwt.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,10 +1,8 @@
-package com.riarurainey.socialmedia.api.security.auth.service;
+package com.riarurainey.socialmedia.api.security.auth;
 
 
 import com.riarurainey.socialmedia.api.exception.UserAlreadyExistException;
-import com.riarurainey.socialmedia.api.security.auth.dto.AuthRequestDto;
-import com.riarurainey.socialmedia.api.security.auth.dto.AuthResponseDto;
-import com.riarurainey.socialmedia.api.security.auth.dto.RegisterRequestDto;
+import com.riarurainey.socialmedia.api.security.jwt.JwtService;
 import com.riarurainey.socialmedia.api.user.Role;
 import com.riarurainey.socialmedia.api.user.User;
 import com.riarurainey.socialmedia.api.user.UserService;
