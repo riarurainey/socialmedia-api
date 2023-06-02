@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor

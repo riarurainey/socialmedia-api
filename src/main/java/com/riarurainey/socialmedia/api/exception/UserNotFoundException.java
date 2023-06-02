@@ -1,13 +1,15 @@
 package com.riarurainey.socialmedia.api.exception;
 
 
-public class UserNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class UserNotFoundException extends ApplicationException {
 
     public UserNotFoundException(String userData) {
-        super(String.format("User with username/email %s not found", userData));
+        super(HttpStatus.NOT_FOUND, String.format("User with username/email %s not found", userData));
     }
 
     public UserNotFoundException(Long id) {
-        super(String.format("User with id %s not found", id));
+        super(HttpStatus.NOT_FOUND, String.format("User with id %s not found", id));
     }
 }

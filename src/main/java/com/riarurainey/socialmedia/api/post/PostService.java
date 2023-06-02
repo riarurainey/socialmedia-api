@@ -7,40 +7,48 @@ import com.riarurainey.socialmedia.api.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class PostService {
+
     private final PostRepository postRepository;
     private final UserService userService;
 
-    public PostDto createPost(PostDto postRequest, Long userId) {
+    public PostResponseDto createPost(PostRequestDto postRequest, Long userId) {
 
         var currentUser = getCurrentUserById(userId);
         var post = Post.builder()
                 .text(postRequest.getText())
                 .title(postRequest.getTitle())
                 .photoUrl(postRequest.getPhotoUrl())
+                .createdAt(LocalDateTime.now())
                 .user(currentUser)
                 .build();
         postRepository.save(post);
-        return PostDto.builder()
+        return PostResponseDto.builder()
                 .text(post.getText())
                 .title(post.getTitle())
+                .createdAt(post.getCreatedAt())
                 .photoUrl(post.getPhotoUrl()).build();
 
     }
 
-    public PostDto getPost(Long postId) {
+    public PostResponseDto getPost(Long postId) {
+
         var post = getPostById(postId);
-        return PostDto.builder()
+        return PostResponseDto.builder()
                 .text(post.getText())
                 .title(post.getTitle())
-                .photoUrl(post.getPhotoUrl()).build();
+                .photoUrl(post.getPhotoUrl())
+                .createdAt(post.getCreatedAt())
+                .build();
+
     }
 
-    public PostDto update(Long postId, PostDto postRequest,  Long userId) {
+    public PostResponseDto update(Long postId, PostRequestDto postRequest, Long userId) {
 
         var post = getPostById(postId);
         if (!Objects.equals(post.getUser().getId(), userId)) {
@@ -52,9 +60,10 @@ public class PostService {
         post.setPhotoUrl(postRequest.getPhotoUrl());
 
         postRepository.save(post);
-        return PostDto.builder()
+        return PostResponseDto.builder()
                 .text(post.getText())
                 .title(post.getTitle())
+                .createdAt(post.getCreatedAt())
                 .photoUrl(post.getPhotoUrl()).build();
     }
 

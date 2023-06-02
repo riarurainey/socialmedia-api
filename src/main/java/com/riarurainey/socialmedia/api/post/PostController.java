@@ -12,26 +12,25 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PostController {
 
-
     private final PostService postService;
 
     @PostMapping
-    public ResponseEntity<PostDto> createPost(@RequestBody PostDto postRequest,
-                                                   @AuthenticationPrincipal User user) {
+    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequest,
+                                                      @AuthenticationPrincipal User user) {
         var postResponse = postService.createPost(postRequest, user.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body(postResponse);
 
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<PostDto> getPost(@PathVariable Long postId) {
+    public ResponseEntity<PostResponseDto> getPost(@PathVariable Long postId) {
         return ResponseEntity.ok(postService.getPost(postId));
     }
 
     @PutMapping("/{postId}")
-    public ResponseEntity<PostDto> update(@PathVariable Long postId,
-                                               @RequestBody PostDto postRequest,
-                                               @AuthenticationPrincipal User user) {
+    public ResponseEntity<PostResponseDto> update(@PathVariable Long postId,
+                                                  @RequestBody PostRequestDto postRequest,
+                                                  @AuthenticationPrincipal User user) {
 
         return ResponseEntity.ok(postService.update(postId, postRequest, user.getId()));
     }

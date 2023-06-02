@@ -1,9 +1,11 @@
 package com.riarurainey.socialmedia.api.exception;
 
-public class UserAlreadyExistException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class UserAlreadyExistException extends ApplicationException {
 
     public UserAlreadyExistException(String userData) {
-        super(String.format("%s is already taken. Please enter a different username/email", userData));
+        super(HttpStatus.CONFLICT, String.format("%s is already taken. Please enter a different username/email", userData));
     }
 
 }

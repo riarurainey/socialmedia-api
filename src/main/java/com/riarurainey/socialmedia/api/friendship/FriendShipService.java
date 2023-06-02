@@ -1,5 +1,7 @@
 package com.riarurainey.socialmedia.api.friendship;
 
+import com.riarurainey.socialmedia.api.exception.FriendRequestNotFoundException;
+import com.riarurainey.socialmedia.api.exception.FriendshipNotFoundException;
 import com.riarurainey.socialmedia.api.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,7 +34,9 @@ public class FriendShipService {
             userService.save(user);
             userService.save(requestSender);
 
-        }// выбросить искл, что такой заявки нет
+        } else {
+            throw new FriendRequestNotFoundException();
+        }
 
     }
 
@@ -44,7 +48,7 @@ public class FriendShipService {
             userService.save(user);
 
         } else {
-            // выбросить искл, что такой заявки нет
+            throw new FriendRequestNotFoundException();
         }
     }
 
@@ -59,6 +63,8 @@ public class FriendShipService {
             user.getSubscriptions().remove(friend);
             userService.save(user);
             userService.save(friend);
+        } else {
+            throw new FriendshipNotFoundException(userId, friendId);
         }
 
     }

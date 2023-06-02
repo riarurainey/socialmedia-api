@@ -1,9 +1,11 @@
 package com.riarurainey.socialmedia.api.exception;
 
-public class PostNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class PostNotFoundException extends ApplicationException {
 
     public PostNotFoundException() {
-        super("Post not found");
+        super(HttpStatus.NOT_FOUND, "Post not found");
     }
 
 }

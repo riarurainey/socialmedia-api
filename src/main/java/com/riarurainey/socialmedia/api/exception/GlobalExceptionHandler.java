@@ -34,32 +34,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler(UserAlreadyExistException.class)
-    protected ResponseEntity<Object> handleRegistrationException(UserAlreadyExistException ex) {
-
+    @ExceptionHandler(ApplicationException.class)
+    protected ResponseEntity<Object> handleUserNotFoundException(ApplicationException ex) {
         var apiError = ApiError.builder()
-                .status(HttpStatus.CONFLICT)
-                .message(ex.getMessage())
-                .build();
-
-        return new ResponseEntity<>(apiError, HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(UserNotFoundException.class)
-    protected ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex) {
-
-        var apiError = ApiError.builder()
-                .status(HttpStatus.NOT_FOUND)
-                .message(ex.getMessage())
-                .build();
-
-        return new ResponseEntity<>(apiError, apiError.getStatus());
-    }
-
-    @ExceptionHandler(FriendshipNotFoundException.class)
-    protected ResponseEntity<Object> handleUserNotFoundException(FriendshipNotFoundException ex) {
-        var apiError = ApiError.builder()
-                .status(HttpStatus.NOT_FOUND)
+                .status(ex.getHttpStatus())
                 .message(ex.getMessage())
                 .build();
 

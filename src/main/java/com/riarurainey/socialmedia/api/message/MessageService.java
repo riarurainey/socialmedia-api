@@ -1,7 +1,7 @@
 package com.riarurainey.socialmedia.api.message;
 
+import com.riarurainey.socialmedia.api.exception.FriendshipNotFoundException;
 import com.riarurainey.socialmedia.api.user.User;
-import com.riarurainey.socialmedia.api.user.UserRepository;
 import com.riarurainey.socialmedia.api.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,11 +31,8 @@ public class MessageService {
 
             messageRepository.save(message);
         } else {
-            // иначе экспешн
+            throw new FriendshipNotFoundException(sender.getId(), receiver.getId());
         }
-
-
-
     }
 
 }

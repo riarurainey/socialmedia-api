@@ -28,7 +28,6 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Size(min = 2, max = 40,
             message = "Username must be between 2 and 40 characters in size" )
     private String username;
@@ -36,14 +35,12 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String email;
 
-
     private String password;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-
     @JsonIgnore
     private List<Post> posts;
 
@@ -54,7 +51,7 @@ public class User implements UserDetails {
     @JsonIgnore
     private List<User> friends;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_subscriptions",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "subscriber_id"))
